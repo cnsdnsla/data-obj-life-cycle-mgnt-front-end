@@ -1,10 +1,25 @@
-import Sidebar from "@/app/components/sidebar";
+'use client';
+import Sidebar from '@/components/sidebar';
+import { SETTINGS_NAVIGATIONS } from '@/consts';
+import ContentLayout from '@/layouts/main/main.layout';
 
 const DashboardPage = () => {
   return (
-    <div className="">
-      <Sidebar />
-      <div>안녕안녕 대시보드 바꾼다아 이것도 바꾸지이~</div>
+    <div className="flex flex-nowrap">
+      <Sidebar navigations={SETTINGS_NAVIGATIONS} />
+      <ContentLayout
+        title="Dashboard"
+        routePaths={[
+          {
+            path: '/workspace',
+            name: 'Workspace',
+          },
+          {
+            path: '/workspace/data-mgnt',
+            name: 'Data Management',
+          },
+        ]}
+      />
     </div>
   );
 };
