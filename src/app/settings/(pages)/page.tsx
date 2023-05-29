@@ -1,7 +1,8 @@
-import { redirect } from 'next/navigation';
-import { SETTINGS_NAVIGATIONS } from '../hooks/useSettingsNav';
+'use client';
+import useSettingsNav, { SETTINGS_NAVIGATIONS } from '../hooks/useSettingsNav';
 
 const SettingsPage = () => {
-  redirect(SETTINGS_NAVIGATIONS[0].routePath);
+  const {redirectDefaultRoutePath} = useSettingsNav();
+  redirectDefaultRoutePath()
 };
 export default SettingsPage;

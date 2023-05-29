@@ -27,8 +27,8 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="flex flex-nowrap w-full">
       <Sidebar navigations={settingNavs} />
       <div className="p-4 h-[calc(100vh)] w-full bg-white">
-        <div className="h-full w-2/3 m-auto">
-          <div>
+        <div className="h-full w-3/4 m-auto flex flex-col">
+          <div className="grow-0">
             {/* <Breadcrumbs separator=">" className="bg-transparent px-0"> */}
             <Breadcrumbs separator=">" className="px-0 bg-transparent">
               <a className="opacity-60">Workspace</a>
@@ -63,11 +63,12 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
               })}
             </Breadcrumbs>
           </div>
-          <div>
-            <Typography variant="h2">{currNavigation?.name}</Typography>
+          <div className="grow-0">
+            <Typography variant="h2" color="blue-gray">
+              {currNavigation?.name}
+            </Typography>
           </div>
-          <div></div>
-          {children}
+          <div className="grow overflow-y-hidden">{children}</div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 'use client';
+import { SETTINGS_NAVIGATIONS } from '@/app/settings/hooks/useSettingsNav';
 import Sidebar from '@/components/sidebar';
-import { SETTINGS_NAVIGATIONS } from '@/consts';
 import ContentLayout from '@/layouts/main/main.layout';
 
 const DashboardPage = () => {

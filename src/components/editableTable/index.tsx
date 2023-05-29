@@ -1,6 +1,7 @@
-import { Input, Typography } from '@material-tailwind/react';
+import { Button, IconButton, Input, Typography } from '@material-tailwind/react';
 import SimpleInput, { SimpleInputValidationRule } from '../input';
 import { HTMLInputTypeAttribute } from 'react';
+import { MinusIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
 
 export enum EditableTableColumnType {
   STRING,
@@ -89,52 +90,79 @@ const EditableTable = (props: EditableTableProps) => {
   // const renderCellVallue = (value: EditableTableCellValue, editing: boolean) => {};
 
   return (
-    <table className="mt-4 w-full table-fixed text-left w-full">
-      <thead>
-        <tr>
-          {Array.from(columnMap.values()).map((column, index) => {
-            return (
-              <th
-                key={`col_${index}`}
-                className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
-              >
+    <div className="h-full flex flex-col">
+      <div className="flex gap-2 grow-0 w-full justify-end">
+        <Button color="blue" size="sm" className="flex items-center">
+          <PlusIcon strokeWidth={2} className="h-5 w-5" />
+          Add row
+        </Button>
+        <Button color="blue" size="sm">
+          Save
+        </Button>
+      </div>
+      <div className="grow overflow-y-auto">
+        <table className="mt-2 w-full h-full table-auto text-left">
+          <thead>
+            <tr>
+              {Array.from(columnMap.values()).map((column, index) => {
+                return (
+                  <th
+                    key={`col_${index}`}
+                    className="border-y border-blue-gray-100 bg-blue-gray-50 p-4 transition-colors hover:bg-blue-gray-50 sticky top-0 z-50	"
+                  >
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+                    >
+                      {column.name}
+                    </Typography>
+                  </th>
+                );
+              })}
+              <th className="border-y border-blue-gray-100 bg-blue-gray-50 p-4 transition-colors hover:bg-blue-gray-50 sticky top-0 z-50	">
                 <Typography
                   variant="small"
                   color="blue-gray"
                   className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
                 >
-                  {column.name}
+                  Action
                 </Typography>
               </th>
-            );
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        {rowValues.map((rowValue, index) => {
-          const isLast = index === rowValues.length - 1;
-          const classes = isLast ? 'p-2 align-top' : 'p-2 border-b border-blue-gray-50  align-top';
-          return (
-            <tr key={`row_${index}`}>
-              {rowValue.cellValues.map((cellValue, index) => {
-                return (
-                  <td key={`cell_${index}`} className={classes}>
-                    <Typography variant="small" color="blue-gray" className="font-normal">
-                      <SimpleInput
-                        name={`${rowValue.id}_${cellValue.columnId}`}
-                        type={columns[index].type}
-                        defaultValue={cellValue.value}
-                        validationRule={columns[index].validationRule}
-                      />
-                    </Typography>
-                  </td>
-                );
-              })}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          </thead>
+          <tbody className="overflow-y-auto">
+            {rowValues.map((rowValue, index) => {
+              const isLast = index === rowValues.length - 1;
+              const classes = isLast ? 'p-2 align-top' : 'p-2 border-b border-blue-gray-50 align-top';
+              return (
+                <tr key={`row_${index}`}>
+                  {rowValue.cellValues.map((cellValue, index) => {
+                    return (
+                      <td key={`cell_${index}`} className={classes}>
+                        <Typography variant="small" color="blue-gray" className="font-normal">
+                          <SimpleInput
+                            name={`${rowValue.id}_${cellValue.columnId}`}
+                            type={columns[index].type}
+                            defaultValue={cellValue.value}
+                            validationRule={columns[index].validationRule}
+                          />
+                        </Typography>
+                      </td>
+                    );
+                  })}
+                  <td className={`${classes} text-center`}>
+                    <IconButton variant="text" size="sm" color="blue-gray">
+                      <TrashIcon className="h-4 w-4" />
+                    </IconButton>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 

@@ -9,7 +9,7 @@ import {
   ShareIcon,
   ShieldCheckIcon,
 } from '@heroicons/react/24/solid';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { redirect, usePathname, useSearchParams } from 'next/navigation';
 import useWorkspace, { TempWorkspace } from './useWorkspace';
 
 const SETTINGS_ROUTE_PREFIX = '/settings';
@@ -112,12 +112,17 @@ const useSettingNav = () => {
     return path;
   };
 
+  const redirectDefaultRoutePath = ()=>{
+    redirect(SETTINGS_NAVIGATIONS[0].routePath);
+  }
+
   return {
     currNavigation,
     targetWorkspace,
     currRoutePath,
     currWorkspacePath,
     generateSettingsPath,
+    redirectDefaultRoutePath
   };
 };
 

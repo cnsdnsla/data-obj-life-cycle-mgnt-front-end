@@ -134,10 +134,296 @@ const GeneralPage = () => {
         },
       ],
     },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
+
+    {
+      id: 'row4',
+      cellValues: [
+        {
+          columnId: 'order',
+          value: 'Order4',
+        },
+        {
+          columnId: 'description',
+          value: 'Description4',
+        },
+        {
+          columnId: 'name',
+          value: 'Name4',
+        },
+        {
+          columnId: 'id',
+          value: 'Id4',
+        },
+      ],
+    },
   ];
 
   return (
-    <div>
+    <div className="w-full h-full">
       <EditableTable columns={columns} rowValues={rowValues} />
     </div>
   );
