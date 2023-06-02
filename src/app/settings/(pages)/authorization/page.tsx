@@ -1,10 +1,14 @@
 'use client';
+import AutoComplete from '@/components/autoComplete';
 import EditableTable, {
   EditableTableColumn,
   EditableTableColumnType,
   EditableTableRowValue,
 } from '@/components/editableTable';
+import FilterableSelect from '@/components/filterableSelect';
 import PaginatedTable from '@/components/paginatedTable';
+import TreeView from '@/components/treeView';
+import { Checkbox, Typography } from '@material-tailwind/react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import React from 'react';
 
@@ -424,7 +428,100 @@ const AuthorizationPage = () => {
   ];
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full overflow-auto">
+      <FilterableSelect
+        id="filterableSelect"
+        name="filterableSelect"
+        multiple={true}
+        // selected={['key1', 'key2', 'key7', 'key8']}
+        options={[
+          { key: 'key1', label: 'Label1' },
+          { key: 'key2', label: 'Label2' },
+          { key: 'key3', label: 'Label3' },
+          { key: 'key4', label: 'Label4' },
+          { key: 'key5', label: 'Label5' },
+          { key: 'key6', label: 'Label6' },
+          { key: 'key7', label: 'Label7' },
+          { key: 'key8', label: 'Label8' },
+          { key: 'key9', label: 'Label9' },
+          { key: 'key10', label: 'Label10' },
+        ]}
+      />
+      <TreeView
+        tree={[
+          {
+            key: '1',
+            label: (
+              <div className="flex items-center">
+                <Checkbox
+                  checked
+                  onChange={(e) => {
+                    console.log(e.target.checked);
+                  }}
+                  containerProps={{ className: 'p-0 px-1' }}
+                  label={
+                    <Typography color="blue-gray" className="mr-auto font-normal">
+                      Open
+                    </Typography>
+                  }
+                />
+              </div>
+            ),
+          },
+          {
+            key: '2',
+            label: 'In Progress',
+            open: true,
+            subTreeData: [
+              { key: '2-1', label: 'Requirement Analysis' },
+              {
+                key: '2-2',
+                label: 'Design',
+                open: true,
+                subTreeData: [
+                  {
+                    key: '2-2-1',
+                    label: 'Primarily design',
+                  },
+                  {
+                    key: '2-2-2',
+                    label: 'Detailed design',
+                    open: true,
+                    subTreeData: [
+                      {
+                        key: '2-2-2-1',
+                        label: 'Component Design',
+                      },
+                      {
+                        key: '2-2-2-2',
+                        label: 'Class Design',
+                      },
+                      {
+                        key: '2-2-2-3',
+                        label: 'Function Design',
+                      },
+                    ],
+                  },
+                ],
+              },
+              { key: '2-3', label: 'Implementation' },
+              { key: '2-4', label: 'Test' },
+            ],
+          },
+          {
+            key: '3',
+            label: 'Done',
+          },
+          {
+            key: '4',
+            label: 'Reviewing',
+          },
+          {
+            key: '5',
+            label: 'Done Done',
+          },
+        ]}
+      />
       <PaginatedTable columns={columns} rowValues={rowValues} />
     </div>
   );

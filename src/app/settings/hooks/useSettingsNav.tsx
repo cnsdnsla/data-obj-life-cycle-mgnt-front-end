@@ -30,6 +30,15 @@ export const SETTINGS_NAVIGATIONS: Navigation[] = [
     routePath: `${SETTINGS_ROUTE_PREFIX}/general`,
     description: '워크스페이스 ID, 이름, 설명, 기간 설정',
     icon: <Cog6ToothIcon />,
+    subNavitions: [
+      {
+        id: SettingsNavIdEnum.GENERAL,
+        name: 'General',
+        routePath: `${SETTINGS_ROUTE_PREFIX}/general`,
+        description: '워크스페이스 ID, 이름, 설명, 기간 설정',
+        icon: <Cog6ToothIcon />,
+      },
+    ],
   },
   {
     id: SettingsNavIdEnum.AUTH,
@@ -112,9 +121,9 @@ const useSettingNav = () => {
     return path;
   };
 
-  const redirectDefaultRoutePath = ()=>{
+  const redirectDefaultRoutePath = () => {
     redirect(SETTINGS_NAVIGATIONS[0].routePath);
-  }
+  };
 
   return {
     currNavigation,
@@ -122,7 +131,7 @@ const useSettingNav = () => {
     currRoutePath,
     currWorkspacePath,
     generateSettingsPath,
-    redirectDefaultRoutePath
+    redirectDefaultRoutePath,
   };
 };
 

@@ -75,7 +75,6 @@ const SimpleInput = (props: InputProps) => {
         message: props.validationRule.pattern.message,
       };
     }
-    console.log(validationRule);
     return register(props.name, validationRule);
   };
 
