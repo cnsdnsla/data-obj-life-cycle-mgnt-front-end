@@ -1,5 +1,5 @@
 import { Button, IconButton, Input, Typography } from '@material-tailwind/react';
-import SimpleInput, { SimpleInputValidationRule } from '../input';
+import SimpleInput, { SimpleInputValidationRule } from '../simpleInput';
 import { HTMLInputTypeAttribute } from 'react';
 import { MinusIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
 

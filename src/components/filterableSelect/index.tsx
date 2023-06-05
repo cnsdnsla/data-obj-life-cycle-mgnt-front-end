@@ -1,18 +1,18 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import {
-  Button,
   Checkbox,
   Chip,
-  IconButton,
   List,
   ListItem,
+  Menu,
+  MenuItem,
   Popover,
   PopoverContent,
   PopoverHandler,
   Typography,
 } from '@material-tailwind/react';
-import Input from '../input';
-import { useEffect, useState } from 'react';
+import Input from '../simpleInput';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 export type FilterableSelectOption = {
   key: string;
@@ -31,17 +31,18 @@ export type FilterableSelectProps = {
 const FilterableSelect = (props: FilterableSelectProps) => {
   const { id, name, multiple } = props;
 
+  const [open, setOpen] = useState(false);
   const [optionMap, setOptionMap] = useState<Map<string, FilterableSelectOption>>(new Map());
+  const [filter, setFilter] = useState<string>();
   const [selected, setSelected] = useState<string | string[]>(
     props.selected ? props.selected : props.multiple ? [] : ''
   );
-  const [open, setOpen] = useState(false);
 
   const renderMultipleSelectedOptions = () => {
     if (multiple && Array.isArray(selected)) {
-      return selected.map((key, index) => {
-        if (optionMap.has(key)) {
-          return <Chip key={index} value={optionMap.get(key)?.label} />;
+      return Array.from(optionMap.values()).map((option, index) => {
+        if (selected.includes(option.key)) {
+          return <Chip key={index} value={optionMap.get(option.key)?.label} />;
         }
       });
     } else {
@@ -63,37 +64,46 @@ const FilterableSelect = (props: FilterableSelectProps) => {
     }
   };
 
-  const renderOptions = (filterStr?: string) => {
+  const renderOptions = () => {
     const targetOptions = [];
-    if (filterStr && filterStr.length > 0) {
+    if (filter && filter.length > 0) {
       optionMap.forEach((option) => {
-        if (option.label.includes(filterStr)) {
+        if (option.label.includes(filter)) {
           targetOptions.push(option);
         }
       });
     } else {
       targetOptions.push(...Array.from(optionMap.values()));
     }
-    return targetOptions.map((option, index) => {
-      let isSelectedOption = false;
-      if (multiple && Array.isArray(selected)) {
-        isSelectedOption = selected.includes(option.key);
-      } else if (!multiple && typeof selected === 'string') {
-        isSelectedOption = option.key === selected;
-      }
 
-      return (
-        <ListItem
-          key={index}
-          className={`${isSelectedOption ? 'bg-blue-gray-50' : ''}`}
-          onClick={() => {
-            handleItemSelected(option.key);
-          }}
-        >
-          {option.label}
-        </ListItem>
-      );
-    });
+    if (targetOptions.length > 0) {
+      return targetOptions.map((option, index) => {
+        let isSelectedOption = false;
+        if (multiple && Array.isArray(selected)) {
+          isSelectedOption = selected.includes(option.key);
+        } else if (!multiple && typeof selected === 'string') {
+          isSelectedOption = option.key === selected;
+        }
+        return (
+          <MenuItem key={index} className={`p-1`}>
+            <label htmlFor={`item-${option.key}`} className="flex cursor-pointer items-center gap-2 p-1">
+              <Checkbox
+                id={`item-${option.key}`}
+                containerProps={{ className: 'p-0' }}
+                className="hover:before:content-none"
+                onChange={() => {
+                  handleItemSelected(option.key);
+                }}
+                checked={isSelectedOption}
+              />
+              {option.label}
+            </label>
+          </MenuItem>
+        );
+      });
+    } else {
+      return <MenuItem disabled={true}>No options</MenuItem>;
+    }
   };
 
   const handleItemSelected = (optionKey: string) => {
@@ -113,6 +123,10 @@ const FilterableSelect = (props: FilterableSelectProps) => {
     }
   };
 
+  const handleFilterChanged = (e: ChangeEvent<HTMLInputElement>) => {
+    setFilter(() => e.target.value);
+  };
+
   useEffect(() => {
     const optionMap = new Map<string, FilterableSelectOption>();
     props.options.forEach((option) => {
@@ -123,7 +137,7 @@ const FilterableSelect = (props: FilterableSelectProps) => {
 
   return (
     <div className="w-[200px]">
-      <Popover open={open} handler={setOpen}>
+      <Popover open={open} handler={setOpen} placement="bottom">
         <PopoverHandler>
           <div
             className={`flex gap-2 items-center w-full p-1 border-2 rounded-[7px] hover:border-blue-500  cursor-pointer ${
@@ -142,8 +156,8 @@ const FilterableSelect = (props: FilterableSelectProps) => {
           </div>
         </PopoverHandler>
         <PopoverContent className="p-2">
-          <Input type="text" name="dd" defaultValue={''} />
-          <List className="p-1">{renderOptions()}</List>
+          <Input type="text" name="dd" defaultValue={''} onChange={handleFilterChanged} />
+          <Menu>{renderOptions()}</Menu>
         </PopoverContent>
       </Popover>
     </div>

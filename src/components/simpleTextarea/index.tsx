@@ -1,10 +1,10 @@
 /* eslint-disable eqeqeq */
 import { InformationCircleIcon } from '@heroicons/react/24/solid';
-import { Input, Typography } from '@material-tailwind/react';
-import { HTMLInputTypeAttribute, useEffect } from 'react';
+import { Textarea, Typography } from '@material-tailwind/react';
+import { ChangeEvent, useEffect } from 'react';
 import { RegisterOptions, useForm } from 'react-hook-form';
 
-export type SimpleInputValidationRule = {
+export type SimpleTextareaValidationRule = {
   required?: { value: boolean; message: string };
   min?: { value: string | number; message: string };
   max?: { value: string | number; message: string };
@@ -13,21 +13,21 @@ export type SimpleInputValidationRule = {
   pattern?: { value: RegExp; message: string };
 };
 
-export type InputProps = {
-  name: string;
-  type: HTMLInputTypeAttribute;
-  validationRule?: SimpleInputValidationRule;
-  defaultValue: any;
-  className?: string;
-  onBlur?: (data: SimpleInputData) => void;
-};
-
-export type SimpleInputData = {
+export type SimpleTextareaData = {
   isValid: boolean;
   value: any;
 };
 
-const SimpleInput = (props: InputProps) => {
+export type InputProps = {
+  name: string;
+  validationRule?: SimpleTextareaValidationRule;
+  defaultValue: any;
+  className?: string;
+  onBlur?: (data: SimpleTextareaData) => void;
+  onChange?: (value: ChangeEvent<HTMLTextAreaElement>) => void;
+};
+
+const SimpleTextarea = (props: InputProps) => {
   const {
     register,
     trigger,
@@ -80,11 +80,17 @@ const SimpleInput = (props: InputProps) => {
 
   const handleBlur = () => {
     if (props.onBlur) {
-      const data: SimpleInputData = {
+      const data: SimpleTextareaData = {
         isValid: isValid,
         value: getValues(props.name),
       };
       props.onBlur(data);
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    if (props.onChange) {
+      props.onChange(e);
     }
   };
 
@@ -94,20 +100,19 @@ const SimpleInput = (props: InputProps) => {
 
   return (
     <>
-      <Input
-        type={props.type}
+      <Textarea
         size="md"
         className={`${props.className} !p-0 !pl-2 !border-t-blue-gray-200 focus:!border-t-blue-500`}
         labelProps={{
           className: 'before:content-none after:content-none',
         }}
-        containerProps={{
-          className: '!h-8',
-        }}
         {...generateValidationRule()}
         // {...register(props.name, { value: props.defaultValue, maxLength: { value: 4, message: 'test' } })}
         onBlur={() => {
           handleBlur();
+        }}
+        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+          handleChange(e);
         }}
       />
       {errors[props.name]?.message != null && (
@@ -122,4 +127,4 @@ const SimpleInput = (props: InputProps) => {
   );
 };
 
-export default SimpleInput;
+export default SimpleTextarea;

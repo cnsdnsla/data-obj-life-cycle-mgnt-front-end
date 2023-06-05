@@ -24,54 +24,56 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   });
 
   return (
-    <div className="flex flex-nowrap w-full">
-      <Sidebar navigations={settingNavs} />
-      <div className="p-4 h-[calc(100vh)] w-full bg-white">
-        <div className="h-full w-3/4 m-auto flex flex-col">
-          <div className="grow-0">
-            {/* <Breadcrumbs separator=">" className="bg-transparent px-0"> */}
-            <Breadcrumbs separator=">" className="px-0 bg-transparent">
-              <a className="opacity-60">Workspace</a>
-              {sortedWorkspaceArr.map((workspace, index) => {
-                if (sortedWorkspaceArr.length - 1 === index) {
-                  return (
-                    <a
-                      href={generateSettingsPath(
-                        currNavigation?.id ? (currNavigation.id as SettingsNavIdEnum) : undefined,
-                        workspace
-                      )}
-                      key={`link_${workspace.id}`}
-                    >
-                      {workspace.name}
-                    </a>
-                  );
-                } else {
-                  // console.log(generateSettingsPath(undefined, workspace))
-                  return (
-                    <a
-                      href={generateSettingsPath(
-                        currNavigation?.id ? (currNavigation.id as SettingsNavIdEnum) : undefined,
-                        workspace
-                      )}
-                      key={`link_${workspace.id}`}
-                      className="opacity-60"
-                    >
-                      {workspace.name}
-                    </a>
-                  );
-                }
-              })}
-            </Breadcrumbs>
+    <>
+      <div className="flex flex-nowrap w-full">
+        <Sidebar navigations={settingNavs} />
+        <div className="p-4 h-[calc(100vh)] w-full bg-white">
+          <div className="h-full max-w-full w-fit m-auto flex flex-col">
+            <div className="grow-0 w-fit">
+              {/* <Breadcrumbs separator=">" className="bg-transparent px-0"> */}
+              <Breadcrumbs separator=">" className="px-0 bg-transparent">
+                <a className="opacity-60">Workspace</a>
+                {sortedWorkspaceArr.map((workspace, index) => {
+                  if (sortedWorkspaceArr.length - 1 === index) {
+                    return (
+                      <a
+                        href={generateSettingsPath(
+                          currNavigation?.id ? (currNavigation.id as SettingsNavIdEnum) : undefined,
+                          workspace
+                        )}
+                        key={`link_${workspace.id}`}
+                      >
+                        {workspace.name}
+                      </a>
+                    );
+                  } else {
+                    // console.log(generateSettingsPath(undefined, workspace))
+                    return (
+                      <a
+                        href={generateSettingsPath(
+                          currNavigation?.id ? (currNavigation.id as SettingsNavIdEnum) : undefined,
+                          workspace
+                        )}
+                        key={`link_${workspace.id}`}
+                        className="opacity-60"
+                      >
+                        {workspace.name}
+                      </a>
+                    );
+                  }
+                })}
+              </Breadcrumbs>
+            </div>
+            <div className="grow-0">
+              <Typography variant="h2" color="blue-gray">
+                {currNavigation?.name}
+              </Typography>
+            </div>
+            <div className="grow overflow-y-hidden">{children}</div>
           </div>
-          <div className="grow-0">
-            <Typography variant="h2" color="blue-gray">
-              {currNavigation?.name}
-            </Typography>
-          </div>
-          <div className="grow overflow-y-hidden">{children}</div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default SettingsLayout;

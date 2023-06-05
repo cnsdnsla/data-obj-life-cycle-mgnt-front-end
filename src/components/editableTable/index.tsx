@@ -1,5 +1,5 @@
 import { Button, IconButton, Input, Typography } from '@material-tailwind/react';
-import SimpleInput, { SimpleInputValidationRule } from '../input';
+import SimpleInput, { SimpleInputValidationRule } from '../simpleInput';
 import { HTMLInputTypeAttribute } from 'react';
 import { MinusIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/solid';
 
@@ -141,12 +141,16 @@ const EditableTable = (props: EditableTableProps) => {
                     return (
                       <td key={`cell_${index}`} className={classes}>
                         <Typography variant="small" color="blue-gray" className="font-normal">
-                          <SimpleInput
-                            name={`${rowValue.id}_${cellValue.columnId}`}
-                            type={columns[index].type}
-                            defaultValue={cellValue.value}
-                            validationRule={columns[index].validationRule}
-                          />
+                          {columns[index].editable ? (
+                            cellValue.value
+                          ) : (
+                            <SimpleInput
+                              name={`${rowValue.id}_${cellValue.columnId}`}
+                              type={columns[index].type}
+                              defaultValue={cellValue.value}
+                              validationRule={columns[index].validationRule}
+                            />
+                          )}
                         </Typography>
                       </td>
                     );

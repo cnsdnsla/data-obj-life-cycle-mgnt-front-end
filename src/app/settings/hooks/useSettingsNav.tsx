@@ -30,15 +30,6 @@ export const SETTINGS_NAVIGATIONS: Navigation[] = [
     routePath: `${SETTINGS_ROUTE_PREFIX}/general`,
     description: '워크스페이스 ID, 이름, 설명, 기간 설정',
     icon: <Cog6ToothIcon />,
-    subNavitions: [
-      {
-        id: SettingsNavIdEnum.GENERAL,
-        name: 'General',
-        routePath: `${SETTINGS_ROUTE_PREFIX}/general`,
-        description: '워크스페이스 ID, 이름, 설명, 기간 설정',
-        icon: <Cog6ToothIcon />,
-      },
-    ],
   },
   {
     id: SettingsNavIdEnum.AUTH,
