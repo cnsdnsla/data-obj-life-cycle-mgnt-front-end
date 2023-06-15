@@ -3,7 +3,7 @@ import EditableTable, {
   EditableTableColumn,
   EditableTableColumnType,
   EditableTableRowValue,
-} from '@/components/editableTable';
+} from '@/components/editableTable__';
 import { usePathname, useSearchParams } from 'next/navigation';
 import React from 'react';
 

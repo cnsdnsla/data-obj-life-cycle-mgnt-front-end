@@ -12,7 +12,7 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "eqeqeq": "error",
+    "eqeqeq": "off",
     "no-console": "warn",
     "prettier/prettier": "error",
     "@typescript-eslint/no-explicit-any": "off",

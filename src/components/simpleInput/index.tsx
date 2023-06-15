@@ -19,6 +19,7 @@ export type SimpleInputData = {
 };
 
 export type InputProps = {
+  id: string;
   name: string;
   type: HTMLInputTypeAttribute;
   validationRule?: SimpleInputValidationRule;

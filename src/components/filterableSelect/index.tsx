@@ -2,8 +2,6 @@ import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import {
   Checkbox,
   Chip,
-  List,
-  ListItem,
   Menu,
   MenuItem,
   Popover,
@@ -16,7 +14,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 export type FilterableSelectOption = {
   key: string;
-  label: string;
+  value: string;
+  label: string | React.ReactElement;
   disabled?: boolean;
 };
 
@@ -68,7 +67,7 @@ const FilterableSelect = (props: FilterableSelectProps) => {
     const targetOptions = [];
     if (filter && filter.length > 0) {
       optionMap.forEach((option) => {
-        if (option.label.includes(filter)) {
+        if (option.value.includes(filter)) {
           targetOptions.push(option);
         }
       });
@@ -156,7 +155,13 @@ const FilterableSelect = (props: FilterableSelectProps) => {
           </div>
         </PopoverHandler>
         <PopoverContent className="p-2">
-          <Input type="text" name="dd" defaultValue={''} onChange={handleFilterChanged} />
+          <Input
+            type="text"
+            id={`filter_${id}`}
+            name={`filter_${name}`}
+            defaultValue={''}
+            onChange={handleFilterChanged}
+          />
           <Menu>{renderOptions()}</Menu>
         </PopoverContent>
       </Popover>

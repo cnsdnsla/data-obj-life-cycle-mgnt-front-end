@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import withMT from "@material-tailwind/react/utils/withMT";
+import withMT from '@material-tailwind/react/utils/withMT';
 
 /**Original Configuration */
 // module.exports = {
@@ -20,7 +20,7 @@ import withMT from "@material-tailwind/react/utils/withMT";
 //   plugins: [],
 // }
 module.exports = withMT({
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},
   },

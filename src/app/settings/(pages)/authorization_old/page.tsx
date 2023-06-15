@@ -3,7 +3,7 @@ import EditableTable, {
   EditableTableColumn,
   EditableTableColumnType,
   EditableTableRowValue,
-} from '@/components/editableTable';
+} from '@/components/editableTable__';
 import FilterableSelect from '@/components/filterableSelect';
 import PaginatedTable from '@/components/paginatedTable';
 import TreeView from '@/components/treeView';
